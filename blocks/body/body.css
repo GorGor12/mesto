@@ -1,0 +1,7 @@
+.body {
+    border: 1px solid greenyellow;
+    padding: auto;
+    font-family: Inter, Arial, sans-serif;
+    background-color: black;
+    box-sizing: border-box;
+}

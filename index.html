@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="pages/index.css">
+    <link rel="stylesheet" href="vendor/normalize.css">
+    <title>Mesto</title>
+</head>
+
+<body class="body">
+    <header class="header">
+        <img class="header__logo" src="image/logo.svg" alt="логотип место">
+        <div class="header__line"></div>
+    </header>
+    <main class="main">
+        <section class="profile">
+            <div class="profile__info">
+                <img class="profile__image" src="image/Avatar.png" alt="фото аватара">
+                <div class="profile__name">
+                    <div class="profile__nameb">
+                    <h1 class="profile__fullname">Жак-Ив Кусто</h1>
+                    <button class="profile__button"></button>
+                    </div>
+                    <p class="profile__profession">Исследователь океана</p>
+                </div>
+
+            </div>
+            <button class="profile__add-button"></button>
+        </section>
+        <section class="elements">
+            <div class="elements__item">
+                <img class="elements__image" src="image/kirill-pershin-1088404-unsplash.jpg" alt="фото старого храма">
+                <div class="elements__item-bottom">
+                    <h2 class="elements__subtitle">Карачаевск</h2>
+                    <div class="elements__heart"></div>
+                </div>
+            </div>
+            <div class="elements__item">
+                <img class="elements__image" src="image/Mask Group.png" alt="фото старого храма">
+                <div class="elements__item-bottom">
+                    <h2 class="elements__subtitle">Гора Эльбрус</h2>
+                    <div class="elements__heart"></div>
+                </div>
+            </div>
+            <div class="elements__item">
+                <img class="elements__image" src="image/kirill-pershin-1556355-unsplash.png" alt="фото старого храма">
+                <div class="elements__item-bottom">
+                    <h2 class="elements__subtitle">Домбай</h2>
+                    <div class="elements__heart"></div>
+                </div>
+            </div>
+            <div class="elements__item">
+                <img class="elements__image" src="image/Mask Group.png" alt="фото старого храма">
+                <div class="elements__item-bottom">
+                    <h2 class="elements__subtitle">Гора Эльбрус</h2>
+                    <div class="elements__heart"></div>
+                </div>
+            </div>
+            <div class="elements__item">
+                <img class="elements__image" src="image/kirill-pershin-1556355-unsplash.png" alt="фото старого храма">
+                <div class="elements__item-bottom">
+                    <h2 class="elements__subtitle">Домбай</h2>
+                    <div class="elements__heart"></div>
+                </div>
+            </div>
+            <div class="elements__item">
+                <img class="elements__image" src="image/kirill-pershin-1088404-unsplash.jpg" alt="фото старого храма">
+                <div class="elements__item-bottom">
+                    <h2 class="elements__subtitle">Карачаево-Черкесия</h2>
+                    <div class="elements__heart"></div>
+                </div>
+            </div>
+        </section>
+        <footer class="footer">
+            <p class="footer__text">© 2020 Mesto Russia</p>
+        </footer>
+    </main>
+    <div class="popup popup_hidden">
+        <form class="popup__content" name="main">
+            <button class="popup__close-button"></button>
+            <div class="popup__title">Редактировать профиль</div>
+            <input type="text" value="Жак-Ив Кусто" class="popup__input">
+            <input type="text" value="Исследователь океана" class="popup__inputprof">
+            <button type="submit" class="popup__save-button">Сохранить</button>
+        </form>
+    </div>
+    <script src="pages/index.js"></script>
+</body>
+
+</html>

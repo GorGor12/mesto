@@ -1,0 +1,16 @@
+.popup__inputprof {
+    margin: 0 0 48px 0;
+    width: 358px;
+    min-height: 27px;
+    border: none;
+    border-bottom: 1px solid black;
+    opacity: 20%;
+}
+
+@media screen and (max-width: 767px) {
+    .popup__inputprof {
+        width: 238px;
+        font-size: 14px;
+        margin: 0 0 44px 0;
+    }
+}
