@@ -3,9 +3,10 @@
     width: 358px;
     min-height: 27px;
     border: none;
-    border-bottom: 1px solid black;
-    opacity: 20%;
+    border-bottom: 1px solid;
+    border-bottom-color: rgba(0, 0, 0, 0.2);
 }
+
 
 @media screen and (max-width: 767px) {
     .popup__input {

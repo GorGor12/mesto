@@ -1,8 +1,3 @@
-let heart = document.querySelector('.elements__heart');
-heart.addEventListener('click', function(e) {
-    heart.classList.add('elements__heartBlack');
-});
-
 const button = document.querySelector('.profile__button');
 const popup = document.querySelector('.popup');
 const popupCloseButton = document.querySelector('.popup__close-button');
@@ -34,9 +29,19 @@ buttonSave.addEventListener('click', function() {
     job.textContent = jobInput.value;
     popup.classList.add('popup_hidden');
 });
+
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
 formElement.addEventListener('submit', formSubmitHandler); 
+
+document.addEventListener('keypress', function(e) {
+    if (e.code === "Enter") {
+        profileName.textContent = nameInput.value;
+        job.textContent = jobInput.value;
+        popup.classList.add('popup_hidden');
+    }
+});
+
 
 
 
