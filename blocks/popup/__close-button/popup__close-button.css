@@ -4,6 +4,7 @@
     background-image: url(../../../image/Close\ Icon.svg);
     border: none;
     background-color: black;
+    /* background-repeat: no-repeat; */
     position: absolute;
     right: -41px;
     top: -41px;
