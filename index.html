@@ -15,56 +15,56 @@
       <div class="profile__info">
         <img class="profile__image" src="image/Avatar.png" alt="фото аватара">
         <div class="profile__name">
-          <div class="profile__nameb">
-            <h1 class="profile__fullname">Жак-Ив Кусто</h1>
-            <button type="button" class="profile__button"></button>
+          <div class="profile__name-family">
+            <h1 class="profile__full-name">Жак-Ив Кусто</h1>
+            <button type="button" class="profile__edit-button" aria-label="редактировать"></button>
           </div>
           <p class="profile__profession">Исследователь океана</p>
         </div>
       </div>
-      <button type="button" class="profile__add-button"></button>
+      <button type="button" class="profile__add-button" aria-label="добавить профиль"></button>
     </section>
     <section class="elements">
       <div class="elements__item">
         <img class="elements__image" src="image/kirill-pershin-1088404-unsplash.jpg" alt="фото старого храма">
         <div class="elements__item-bottom">
-          <h2 class="elements__subtitle">Карачаевск</h2>
-          <button type="button" class="elements__heart"></button>
+          <h2 class="elements__title">Карачаевск</h2>
+          <button type="button" class="elements__heart" aria-label="нравится"></button>
         </div>
       </div>
       <div class="elements__item">
         <img class="elements__image" src="image/MaskGroup.png" alt="фото Гора Эльбрус">
         <div class="elements__item-bottom">
-          <h2 class="elements__subtitle">Гора Эльбрус</h2>
-          <button type="button" class="elements__heart"></button>
+          <h2 class="elements__title">Гора Эльбрус</h2>
+          <button type="button" class="elements__heart" aria-label="нравится"></button>
         </div>
       </div>
       <div class="elements__item">
         <img class="elements__image" src="image/kirill-pershin-1556355-unsplash.png" alt="фото Домбай">
         <div class="elements__item-bottom">
-          <h2 class="elements__subtitle">Домбай</h2>
-          <button type="button" class="elements__heart"></button>
+          <h2 class="elements__title">Домбай</h2>
+          <button type="button" class="elements__heart" aria-label="нравится"></button>
         </div>
       </div>
       <div class="elements__item">
         <img class="elements__image" src="image/MaskGroup.png" alt="фото Гора Эльбрус">
         <div class="elements__item-bottom">
-          <h2 class="elements__subtitle">Гора Эльбрус</h2>
-          <button type="button" class="elements__heart"></button>
+          <h2 class="elements__title">Гора Эльбрус</h2>
+          <button type="button" class="elements__heart" aria-label="нравится"></button>
         </div>
       </div>
       <div class="elements__item">
         <img class="elements__image" src="image/kirill-pershin-1556355-unsplash.png" alt="фото Домбай">
         <div class="elements__item-bottom">
-          <h2 class="elements__subtitle">Домбай</h2>
-          <button type="button" class="elements__heart"></button>
+          <h2 class="elements__title">Домбай</h2>
+          <button type="button" class="elements__heart" aria-label="нравится"></button>
         </div>
       </div>
       <div class="elements__item">
         <img class="elements__image" src="image/kirill-pershin-1088404-unsplash.jpg" alt="фото старого храма">
         <div class="elements__item-bottom">
-          <h2 class="elements__subtitle">Карачаево-Черкесия</h2>
-          <button type="button" class="elements__heart"></button>
+          <h2 class="elements__title">Карачаево-Черкесия</h2>
+          <button type="button" class="elements__heart" aria-label="нравится"></button>
         </div>
       </div>
     </section>
@@ -74,11 +74,11 @@
   </footer>
   <div class="popup">
     <div class="popup__content">
-      <button type="button" class="popup__close-button"></button>
+      <button type="button" class="popup__close-button" aria-label="закрыть"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
       <form class="popup__form" name="main">
-        <input type="text" value="Жак-Ив Кусто" class="popup__input" name="name">
-        <input type="text" value="Исследователь океана" class="popup__inputprof" name="job">
+        <input type="text" class="popup__input_value_name popup__input" name="name">
+        <input type="text" class="popup__input_value_job popup__input" name="job">
         <button type="submit" class="popup__save-button">Сохранить</button>
       </form>
     </div>

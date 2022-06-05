@@ -1,7 +1,12 @@
 .elements__item-bottom {
   display: flex;
   width: 246px;
-  margin: 21px 15px 0px 21px;
+  margin: 23px 15px 0px 21px;
   justify-content: space-between;
-  position: relative;
+}
+
+@media screen and (max-width: 767px) {
+  .elements__item-bottom {
+    margin: 21px 15px 0px 21px;
+  }
 }
