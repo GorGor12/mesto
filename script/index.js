@@ -6,18 +6,18 @@ const nameInput = document.querySelector('.popup__input_value_name');
 const jobInput = document.querySelector('.popup__input_value_job');
 const profileName = document.querySelector('.profile__full-name');
 const job = document.querySelector('.profile__profession');
-const newJobInput = jobInput.value;
-const newName = nameInput.value;
 
 function formSubmitHandler(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   job.textContent = jobInput.value;
-  popup.classList.remove('popup_open');
+  closePopup();
 }
 
 function openPopup() {
   popup.classList.add('popup_open');
+  nameInput.value = profileName.textContent;
+  jobInput.value = job.textContent;
 }
 
 function closePopup() {

@@ -6,10 +6,12 @@
   border-radius: 2px;
   margin: 18px 0 0 0;
   font-size: 18px;
+  border: none;
 }
 
 .popup__save-button:hover {
   opacity: 80%;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 767px) {
