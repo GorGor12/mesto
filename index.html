@@ -25,7 +25,7 @@
       <button type="button" class="profile__add-button" aria-label="добавить профиль"></button>
     </section>
     <section class="elements">
-      <div class="elements__item">
+      <!--<div class="elements__item">
         <img class="elements__image" src="image/kirill-pershin-1088404-unsplash.jpg" alt="фото старого храма">
         <div class="elements__item-bottom">
           <h2 class="elements__title">Карачаевск</h2>
@@ -66,7 +66,7 @@
           <h2 class="elements__title">Карачаево-Черкесия</h2>
           <button type="button" class="elements__heart" aria-label="нравится"></button>
         </div>
-      </div>
+      </div> -->
     </section>
   </main>
   <footer class="footer">
@@ -83,6 +83,26 @@
       </form>
     </div>
   </div>
+  <div class="popupNewPlace">
+    <div class="popup__content">
+      <button type="button" class="popup__close-button popup__close-button_NewPlace" aria-label="закрыть"></button>
+      <h2 class="popup__title">Новое место</h2>
+      <form class="popup__form_newPlace" name="main">
+        <input type="text" class="popup__input_value_place popup__input" name="place" placeholder="Название">
+        <input type="text" class="popup__input_value_src popup__input" name="link" placeholder="Ссылка на картинку">
+        <button type="submit" class="popup__save-button">Создать</button>
+      </form>
+    </div>
+  </div>
+  <template class="item_template">
+    <div class="elements__item">
+      <img class="elements__image" src="image/kirill-pershin-1088404-unsplash.jpg" alt="фото старого храма">
+      <div class="elements__item-bottom">
+        <h2 class="elements__title">Темплейт</h2>
+        <button type="button" class="elements__heart" aria-label="нравится"></button>
+      </div>
+    </div>
+  </template>
   <script src="script/index.js"></script>
 </body>
 </html>
