@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="pages/index.css">
   <title>Mesto</title>
 </head>
+
 <body class="body">
   <header class="header">
     <img class="header__logo" src="image/logo.svg" alt="логотип место">
@@ -25,7 +27,55 @@
       <button type="button" class="profile__add-button" aria-label="добавить профиль"></button>
     </section>
     <section class="elements">
-      <!--<div class="elements__item">
+    </section>
+  </main>
+  <footer class="footer">
+    <p class="footer__text">© 2022 Egor Gorbunov</p>
+  </footer>
+  <div class="popup">
+    <div class="popup__content">
+      <button type="button" class="popup__close-button" aria-label="закрыть"></button>
+      <h2 class="popup__title">Редактировать профиль</h2>
+      <form class="popup__form" name="main">
+        <input type="text" class="popup__input_value_name popup__input" name="name">
+        <input type="text" class="popup__input_value_job popup__input" name="job">
+        <button type="submit" class="popup__save-button">Сохранить</button>
+      </form>
+    </div>
+  </div>
+  <div class="popupNewPlace">
+    <div class="popup__content">
+      <button type="button" class="popup__close-button popup__close-button_NewPlace" aria-label="закрыть"></button>
+      <h2 class="popup__title">Новое место</h2>
+      <form class="popup__form_newPlace" name="main">
+        <input type="text" class="popup__input_value_place popup__input" name="place" placeholder="Название">
+        <input type="text" class="popup__input_value_src popup__input" name="link" placeholder="Ссылка на картинку">
+        <button type="submit" class="popup__save-button">Создать</button>
+      </form>
+    </div>
+  </div>
+  <div class="popup popupImage">
+    <div class="popupImage__content">
+      <button type="button" class="popup__close-button popup__close-button_image"></button>
+      <img class="popupImage__image" src="" alt="фото не загрузилось, возможно не верная ссылка">
+      <p class="popupImage__text">фото старого храма</p>
+    </div>
+  </div>
+  <template class="item_template">
+    <div class="elements__item">
+      <img class="elements__basket" src="./image/garbage.svg" alt="мусорная корзина - удалить">
+      <img class="elements__image" src="image/kirill-pershin-1088404-unsplash.jpg" alt="фото не загрузилось, возможно не верная ссылка">
+      <div class="elements__item-bottom">
+        <h2 class="elements__title">Темплейт</h2>
+        <button type="button" class="elements__heart" aria-label="нравится"></button>
+      </div>
+    </div>
+  </template>
+  <script src="script/index.js"></script>
+</body>
+
+</html>
+<!--<div class="elements__item">
         <img class="elements__image" src="image/kirill-pershin-1088404-unsplash.jpg" alt="фото старого храма">
         <div class="elements__item-bottom">
           <h2 class="elements__title">Карачаевск</h2>
@@ -67,42 +117,3 @@
           <button type="button" class="elements__heart" aria-label="нравится"></button>
         </div>
       </div> -->
-    </section>
-  </main>
-  <footer class="footer">
-    <p class="footer__text">© 2022 Egor Gorbunov</p>
-  </footer>
-  <div class="popup">
-    <div class="popup__content">
-      <button type="button" class="popup__close-button" aria-label="закрыть"></button>
-      <h2 class="popup__title">Редактировать профиль</h2>
-      <form class="popup__form" name="main">
-        <input type="text" class="popup__input_value_name popup__input" name="name">
-        <input type="text" class="popup__input_value_job popup__input" name="job">
-        <button type="submit" class="popup__save-button">Сохранить</button>
-      </form>
-    </div>
-  </div>
-  <div class="popupNewPlace">
-    <div class="popup__content">
-      <button type="button" class="popup__close-button popup__close-button_NewPlace" aria-label="закрыть"></button>
-      <h2 class="popup__title">Новое место</h2>
-      <form class="popup__form_newPlace" name="main">
-        <input type="text" class="popup__input_value_place popup__input" name="place" placeholder="Название">
-        <input type="text" class="popup__input_value_src popup__input" name="link" placeholder="Ссылка на картинку">
-        <button type="submit" class="popup__save-button">Создать</button>
-      </form>
-    </div>
-  </div>
-  <template class="item_template">
-    <div class="elements__item">
-      <img class="elements__image" src="image/kirill-pershin-1088404-unsplash.jpg" alt="фото старого храма">
-      <div class="elements__item-bottom">
-        <h2 class="elements__title">Темплейт</h2>
-        <button type="button" class="elements__heart" aria-label="нравится"></button>
-      </div>
-    </div>
-  </template>
-  <script src="script/index.js"></script>
-</body>
-</html>
