@@ -5,3 +5,8 @@
   width: 18px;
   z-index: 2;
 }
+
+.elements__basket:hover {
+  opacity: 60%;
+  cursor: pointer;
+}
