@@ -1,18 +1,18 @@
 const profileEditButton = document.querySelector('.profile__edit-button');
 const popupProfile = document.querySelector('.popup');
 const popupCloseButtonProfile = document.querySelector('.popup__close-button');
-const popupCloseButtonNewPlace = document.querySelector('.popup__close-button_newplace');
+const popupCloseButtonNewPlace = document.querySelector('.popup__close-button_type_newplace');
 const popupCloseButtonImage = document.querySelector('.popup__close-button_image_close');
-const popupImage = document.querySelector('.popup_image');
+const popupImage = document.querySelector('.popup_type_image');
 const formElementProfile = document.querySelector('.popup__form');
-const formElementNewPlace = document.querySelector('.popup__form_newplace');
+const formElementNewPlace = document.querySelector('.popup__form-newplace');
 const nameInput = document.querySelector('.popup__input_value_name');
 const jobInput = document.querySelector('.popup__input_value_job');
 const profileName = document.querySelector('.profile__full-name');
 const job = document.querySelector('.profile__profession');
 const elementsTitle = document.querySelector('.elements__title');
 const AddCardButton = document.querySelector('.profile__add-button');
-const popupNewPlace = document.querySelector('.popup_newplace');
+const popupNewPlace = document.querySelector('.popup_type_new-place');
 const placeInput = document.querySelector('.popup__input_value_place');
 const srcInput = document.querySelector('.popup__input_value_src');
 const section = document.querySelector('.elements'); //куда добавляем
@@ -63,7 +63,7 @@ function createCardElement(name, link) {
   const elementsImage = itemTemplateCardNew.querySelector('.elements__image');
   const basket = itemTemplateCardNew.querySelector('.elements__basket');
   const buttonHeart = itemTemplateCardNew.querySelector('.elements__heart');
-  const popupImage = document.querySelector('.popup_image');
+  const popupImage = document.querySelector('.popup_type_image');
   buttonHeart.addEventListener('click', function () {
     buttonHeart.classList.toggle('elements__heart_active');
   });
@@ -83,7 +83,7 @@ function createCardElement(name, link) {
 }
 
 function addPlace(evt) {
-  const popupImage = document.querySelector('.popup_image');
+  const popupImage = document.querySelector('.popup_type_image');
   evt.preventDefault();
   const name = placeInput.value;
   const link = srcInput.value;
