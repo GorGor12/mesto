@@ -69,9 +69,9 @@ function createCardElement(name, link) {
   });
   elementsImage.addEventListener('click', function () {
     popupImage.classList.add('popup_open');
-    document.querySelector('.popupImage__image').src = link;
-    document.querySelector('.popupImage__image').alt = name;
-    document.querySelector('.popupImage__text').textContent = name;
+    document.querySelector('.popup-image__image').src = link;
+    document.querySelector('.popup-image__image').alt = name;
+    document.querySelector('.popup-image__text').textContent = name;
   });
   basket.addEventListener('click', function (evt) {
     itemTemplateCardNew.remove();
