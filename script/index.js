@@ -71,7 +71,7 @@ function createCardElement(name, link) {
     popupImage.classList.add('popup_open');
     document.querySelector('.popup__image-image').src = link;
     document.querySelector('.popup__image-image').alt = name;
-    document.querySelector('.popup-image__text').textContent = name;
+    document.querySelector('.popup__image-text').textContent = name;
   });
   basket.addEventListener('click', function (evt) {
     itemTemplateCardNew.remove();
