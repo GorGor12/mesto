@@ -1,6 +1,6 @@
 const profileEditButton = document.querySelector('.profile__edit-button');
-const popupProfile = document.querySelector('.popup');
-const popupCloseButtonProfile = document.querySelector('.popup__close-button');
+const popupProfile = document.querySelector('.popup_type_profile');
+const popupCloseButtonProfile = document.querySelector('.popup__close-button_type_profile');
 const popupCloseButtonNewPlace = document.querySelector('.popup__close-button_type_newplace');
 const popupCloseButtonImage = document.querySelector('.popup__close-button_image_close');
 const popupImage = document.querySelector('.popup_type_image');
@@ -11,7 +11,7 @@ const jobInput = document.querySelector('.popup__input_value_job');
 const profileName = document.querySelector('.profile__full-name');
 const job = document.querySelector('.profile__profession');
 const elementsTitle = document.querySelector('.elements__title');
-const AddCardButton = document.querySelector('.profile__add-button');
+const addCardButton = document.querySelector('.profile__add-button');
 const popupNewPlace = document.querySelector('.popup_type_new-place');
 const placeInput = document.querySelector('.popup__input_value_place');
 const srcInput = document.querySelector('.popup__input_value_src');
@@ -64,6 +64,7 @@ function createCardElement(name, link) {
   const basket = itemTemplateCardNew.querySelector('.elements__basket');
   const buttonHeart = itemTemplateCardNew.querySelector('.elements__heart');
   const popupImage = document.querySelector('.popup_type_image');
+  const elementsText = itemTemplateCardNew.querySelector('.elements__title');
   buttonHeart.addEventListener('click', function () {
     buttonHeart.classList.toggle('elements__heart_active');
   });
@@ -78,7 +79,7 @@ function createCardElement(name, link) {
   });
   elementsImage.src = link;
   elementsImage.alt = name;
-  itemTemplateCardNew.querySelector('.elements__title').textContent = name;
+  elementsText.textContent = name;
   return itemTemplateCardNew;
 }
 
@@ -88,9 +89,7 @@ function addPlace(evt) {
   const name = placeInput.value;
   const link = srcInput.value;
   const card = createCardElement(name, link);
-  popupCloseButtonImage.addEventListener('click', function () {
-    popupImage.classList.remove('popup_open');
-  });
+  createCardElement(name, link);
   closePopup(popupNewPlace);
   formElementNewPlace.reset();
   section.prepend(card);
@@ -105,10 +104,10 @@ function closePopup(popupElement) {
 }
 
 popupCloseButtonImage.addEventListener('click', function () {
-  popupImage.classList.remove('popup_open');
+  closePopup(popupImage);
 });
 
-AddCardButton.addEventListener('click', function () {
+addCardButton.addEventListener('click', function () {
   openPopup(popupNewPlace);
 });
 
@@ -129,3 +128,7 @@ popupCloseButtonNewPlace.addEventListener('click', function () {
 formElementProfile.addEventListener('submit', formSubmitHandlerProfile);
 
 formElementNewPlace.addEventListener('submit', addPlace);
+
+
+
+
