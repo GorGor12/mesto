@@ -131,4 +131,33 @@ formElementNewPlace.addEventListener('submit', addPlace);
 
 
 
+nameInput.addEventListener('input', function(evt) {
+  console.log(evt.target.validity.valid);
+});
+
+
+
+
+const isValid = () => {
+  if(!nameInput.validity.valid) {
+    showInputError(nameInput, nameInput.validationMessage);
+  } else {
+    hideInputError(nameInput);
+  }
+};
+
+formElementProfile.addEventListener('input', isValid);
+
+const formError = formElementProfile.querySelector(`.${nameInput.id}-error`);
+
+const showInputError = (element, errorMessage) => {
+  element.classList.add('popup__input_type_error');
+  formError.classList.add('name-input-error_active');
+  formError.textContent = errorMessage;
+};
+
+const hideInputError = (element) => {
+  element.classList.remove('popup__input_type_error');
+  formError.classList.remove('name-input-error_active');
+};
 

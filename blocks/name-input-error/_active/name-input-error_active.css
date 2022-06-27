@@ -1,0 +1,8 @@
+.name-input-error_active {
+  display: flex;
+  color: red;
+  font-size: 12px;
+  position: absolute;
+  top: 142px;
+  max-width: 362px;
+}
