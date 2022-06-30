@@ -19,7 +19,6 @@ const section = document.querySelector('.elements'); //куда добавляе
 const itemTemplate = document.querySelector('.template').content; //что добавляем
 const itemTemplateCard = itemTemplate.querySelector('.elements__item').cloneNode(true);
 const newBasket = itemTemplateCard.querySelector('.elements__basket');
-const popups = document.querySelectorAll('.popup');//создал массив из всех попапов
 const initialCards = [
   {
     name: 'Архыз',
@@ -130,92 +129,35 @@ formElementProfile.addEventListener('submit', formSubmitHandlerProfile);
 
 formElementNewPlace.addEventListener('submit', addPlace);
 
-//forEach: перебирает элементы массива и выполняет для каждого свой код
-popups.forEach((popup) => {
-  popup.addEventListener('click', function (e) {
-    if (e.target === e.currentTarget) {
-      popup.classList.remove('popup_open');
-    };
-  });
-  document.addEventListener('keydown', function (e) {
-    if (e.code === 'Escape') {
-      popup.classList.remove('popup_open');
-    }
-  })
-});
 
-document.addEventListener('keydown', function (e) {
-  if (e.code === 'Escape') {
-    closePopup(popupProfile);
-  }
-});
 
-document.addEventListener('keydown', function (e) {
-  if (e.code === 'Escape') {
-    closePopup(popupNewPlace);
-  }
+nameInput.addEventListener('input', function(evt) {
+  console.log(evt.target.validity.valid);
 });
 
 
-//ф-ция - "является действительным" ввод?
+
+
 const isValid = (formElement, inputElement) => { //добавили 2 параметра formElement, inputElement
-  if (!inputElement.validity.valid) {
-    showInputError(formElement, inputElement, inputElement.validationMessage);//обратились в св-ву валидейшнмеседж у конкретного инпута, для получения текста какой-то ошибки
+  if(!nameInput.validity.valid) {
+    showInputError(nameInput, nameInput.validationMessage);
   } else {
-    hideInputError(formElement, inputElement);
+    hideInputError(nameInput);
   }
-};
-//ф-ция "установить прослушиватель событий"
-const setEventListeners = (formElement) => {
-  const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
-  const buttonElement = formElement.querySelector('.popup__save-button');
-  inputList.forEach((inputElement) => {
-    inputElement.addEventListener('input', () => {
-      isValid(formElement, inputElement);
-      toggleButtonState(inputList, buttonElement);
-    });
-  });
-};
-//ф-ция включения валидации
-const enableValidation = () => {
-  const formList = Array.from(document.querySelectorAll('.popup__form'));
-  formList.forEach((formElement) => {
-    formElement.addEventListener('submit', (evt) => {
-      evt.preventDefault();
-    });
-    setEventListeners(formElement);
-  });
 };
 
-enableValidation();
-//ф-ция показа ошибки в инпуте
-const showInputError = (formElement, inputElement, errorMessage) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);//находим в form - составной класс из id формы и слова error, получаем класс какой-то конкретной ошибки из крнкретного инпута
-  inputElement.classList.add('popup__input_type_error'); //добавляем класс который сделает красную рамку инпуту
-  errorElement.textContent = errorMessage;
-  errorElement.classList.add(`${inputElement.id}-error_active`);
+formElementProfile.addEventListener('input', isValid);
+
+const formError = formElementProfile.querySelector(`.${nameInput.id}-error`);
+
+const showInputError = (element, errorMessage) => {
+  element.classList.add('popup__input_type_error');
+  formError.classList.add('name-input-error_active');
+  formError.textContent = errorMessage;
 };
-//ф-ция скрытия ошибки в инпуте
-const hideInputError = (formElement, inputElement) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.remove('popup__input_type_error');
-  errorElement.classList.remove('name-input-error_active');
-  errorElement.textContent = '';
-};
-//ф-ция наличия некорректного ввода
-const hasInvalidInput = (inputList) => {
-  return inputList.some((inputElement) => {
-    return !inputElement.validity.valid;
-  });
-};
-//ф-ция переключения состояния кнопки
-const toggleButtonState = (inputList, buttonElement) => {
-  if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add('popup__save-button_inactive');
-    buttonElement.setAttribute('disabled', 'disabled');
-  } else {
-    buttonElement.classList.remove('popup__save-button_inactive');
-    buttonElement.removeAttribute('disabled', 'disabled');
-  }
+
+const hideInputError = (element) => {
+  element.classList.remove('popup__input_type_error');
+  formError.classList.remove('name-input-error_active');
 };
 
