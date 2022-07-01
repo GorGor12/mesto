@@ -1,0 +1,6 @@
+.popup__error_active {
+  display: flex;
+  color: red;
+  font-size: 12px;
+  max-width: 362px;
+}

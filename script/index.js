@@ -104,6 +104,16 @@ function closePopup(popupElement) {
   popupElement.classList.remove('popup_open');
 }
 
+enableValidation({
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__save-button',
+  inactiveButtonClass: 'popup__save-button_inactive',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_active'
+});
+
+
 popupCloseButtonImage.addEventListener('click', function () {
   closePopup(popupImage);
 });
@@ -155,67 +165,3 @@ document.addEventListener('keydown', function (e) {
     closePopup(popupNewPlace);
   }
 });
-
-
-//ф-ция - "является действительным" ввод?
-const isValid = (formElement, inputElement) => { //добавили 2 параметра formElement, inputElement
-  if (!inputElement.validity.valid) {
-    showInputError(formElement, inputElement, inputElement.validationMessage);//обратились в св-ву валидейшнмеседж у конкретного инпута, для получения текста какой-то ошибки
-  } else {
-    hideInputError(formElement, inputElement);
-  }
-};
-//ф-ция "установить прослушиватель событий"
-const setEventListeners = (formElement) => {
-  const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
-  const buttonElement = formElement.querySelector('.popup__save-button');
-  inputList.forEach((inputElement) => {
-    inputElement.addEventListener('input', () => {
-      isValid(formElement, inputElement);
-      toggleButtonState(inputList, buttonElement);
-    });
-  });
-};
-//ф-ция включения валидации
-const enableValidation = () => {
-  const formList = Array.from(document.querySelectorAll('.popup__form'));
-  formList.forEach((formElement) => {
-    formElement.addEventListener('submit', (evt) => {
-      evt.preventDefault();
-    });
-    setEventListeners(formElement);
-  });
-};
-
-enableValidation();
-//ф-ция показа ошибки в инпуте
-const showInputError = (formElement, inputElement, errorMessage) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);//находим в form - составной класс из id формы и слова error, получаем класс какой-то конкретной ошибки из крнкретного инпута
-  inputElement.classList.add('popup__input_type_error'); //добавляем класс который сделает красную рамку инпуту
-  errorElement.textContent = errorMessage;
-  errorElement.classList.add(`${inputElement.id}-error_active`);
-};
-//ф-ция скрытия ошибки в инпуте
-const hideInputError = (formElement, inputElement) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.remove('popup__input_type_error');
-  errorElement.classList.remove('name-input-error_active');
-  errorElement.textContent = '';
-};
-//ф-ция наличия некорректного ввода
-const hasInvalidInput = (inputList) => {
-  return inputList.some((inputElement) => {
-    return !inputElement.validity.valid;
-  });
-};
-//ф-ция переключения состояния кнопки
-const toggleButtonState = (inputList, buttonElement) => {
-  if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add('popup__save-button_inactive');
-    buttonElement.setAttribute('disabled', 'disabled');
-  } else {
-    buttonElement.classList.remove('popup__save-button_inactive');
-    buttonElement.removeAttribute('disabled', 'disabled');
-  }
-};
-
