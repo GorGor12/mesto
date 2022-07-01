@@ -20,6 +20,8 @@ const itemTemplate = document.querySelector('.template').content; //что до�
 const itemTemplateCard = itemTemplate.querySelector('.elements__item').cloneNode(true);
 const newBasket = itemTemplateCard.querySelector('.elements__basket');
 const popups = document.querySelectorAll('.popup');//создал массив из всех попапов
+const createCardButton = document.querySelector('.create-card-button');
+const popupOpened = document.querySelector('.popup_open');
 const initialCards = [
   {
     name: 'Архыз',
@@ -46,6 +48,11 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
+
+function blockButtonDefault () {
+createCardButton.setAttribute('disabled', 'disabled');
+createCardButton.classList.add('popup__save-button_inactive');
+};
 
 initialCards.forEach(function (element) {
   const card = createCardElement(element.name, element.link);
@@ -90,7 +97,6 @@ function addPlace(evt) {
   const name = placeInput.value;
   const link = srcInput.value;
   const card = createCardElement(name, link);
-  createCardElement(name, link);
   closePopup(popupNewPlace);
   formElementNewPlace.reset();
   section.prepend(card);
@@ -98,15 +104,41 @@ function addPlace(evt) {
 
 function openPopup(popupElement) {
   popupElement.classList.add('popup_open');
+  popupCloseButtonNewPlace.addEventListener('click', function () {
+    closePopup(popupNewPlace);
+  });
+  popupCloseButtonProfile.addEventListener('click', function () {
+    closePopup(popupProfile);
+  });
+  popupCloseButtonImage.addEventListener('click', function () {
+    closePopup(popupImage);
+  });
 }
 
 function closePopup(popupElement) {
   popupElement.classList.remove('popup_open');
+  popupCloseButtonNewPlace.removeEventListener('click', function () {
+    closePopup(popupNewPlace);
+  });
+  popupCloseButtonProfile.removeEventListener('click', function () {
+    closePopup(popupProfile);
+  });
+  popupCloseButtonImage.removeEventListener('click', function () {
+    closePopup(popupImage);
+  });
+  blockButtonDefault();
 }
 
-popupCloseButtonImage.addEventListener('click', function () {
-  closePopup(popupImage);
+enableValidation({
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__save-button',
+  inactiveButtonClass: 'popup__save-button_inactive',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_active'
 });
+
+blockButtonDefault();
 
 addCardButton.addEventListener('click', function () {
   openPopup(popupNewPlace);
@@ -118,14 +150,6 @@ profileEditButton.addEventListener('click', function () {
   jobInput.value = job.textContent;
 });
 
-popupCloseButtonProfile.addEventListener('click', function () {
-  closePopup(popupProfile);
-});
-
-popupCloseButtonNewPlace.addEventListener('click', function () {
-  closePopup(popupNewPlace);
-});
-
 formElementProfile.addEventListener('submit', formSubmitHandlerProfile);
 
 formElementNewPlace.addEventListener('submit', addPlace);
@@ -134,14 +158,20 @@ formElementNewPlace.addEventListener('submit', addPlace);
 popups.forEach((popup) => {
   popup.addEventListener('click', function (e) {
     if (e.target === e.currentTarget) {
-      popup.classList.remove('popup_open');
+      // popup.classList.remove('popup_open');
+      closePopup(popupNewPlace);
+      closePopup(popupProfile);
+      closePopup(popupImage);
     };
   });
   document.addEventListener('keydown', function (e) {
     if (e.code === 'Escape') {
-      popup.classList.remove('popup_open');
-    }
-  })
+      // popup.classList.remove('popup_open');
+      closePopup(popupNewPlace);
+      closePopup(popupProfile);
+      closePopup(popupImage);
+    };
+  });
 });
 
 document.addEventListener('keydown', function (e) {
@@ -155,67 +185,3 @@ document.addEventListener('keydown', function (e) {
     closePopup(popupNewPlace);
   }
 });
-
-
-//ф-ция - "является действительным" ввод?
-const isValid = (formElement, inputElement) => { //добавили 2 параметра formElement, inputElement
-  if (!inputElement.validity.valid) {
-    showInputError(formElement, inputElement, inputElement.validationMessage);//обратились в св-ву валидейшнмеседж у конкретного инпута, для получения текста какой-то ошибки
-  } else {
-    hideInputError(formElement, inputElement);
-  }
-};
-//ф-ция "установить прослушиватель событий"
-const setEventListeners = (formElement) => {
-  const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
-  const buttonElement = formElement.querySelector('.popup__save-button');
-  inputList.forEach((inputElement) => {
-    inputElement.addEventListener('input', () => {
-      isValid(formElement, inputElement);
-      toggleButtonState(inputList, buttonElement);
-    });
-  });
-};
-//ф-ция включения валидации
-const enableValidation = () => {
-  const formList = Array.from(document.querySelectorAll('.popup__form'));
-  formList.forEach((formElement) => {
-    formElement.addEventListener('submit', (evt) => {
-      evt.preventDefault();
-    });
-    setEventListeners(formElement);
-  });
-};
-
-enableValidation();
-//ф-ция показа ошибки в инпуте
-const showInputError = (formElement, inputElement, errorMessage) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);//находим в form - составной класс из id формы и слова error, получаем класс какой-то конкретной ошибки из крнкретного инпута
-  inputElement.classList.add('popup__input_type_error'); //добавляем класс который сделает красную рамку инпуту
-  errorElement.textContent = errorMessage;
-  errorElement.classList.add(`${inputElement.id}-error_active`);
-};
-//ф-ция скрытия ошибки в инпуте
-const hideInputError = (formElement, inputElement) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.remove('popup__input_type_error');
-  errorElement.classList.remove('name-input-error_active');
-  errorElement.textContent = '';
-};
-//ф-ция наличия некорректного ввода
-const hasInvalidInput = (inputList) => {
-  return inputList.some((inputElement) => {
-    return !inputElement.validity.valid;
-  });
-};
-//ф-ция переключения состояния кнопки
-const toggleButtonState = (inputList, buttonElement) => {
-  if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add('popup__save-button_inactive');
-    buttonElement.setAttribute('disabled', 'disabled');
-  } else {
-    buttonElement.classList.remove('popup__save-button_inactive');
-    buttonElement.removeAttribute('disabled', 'disabled');
-  }
-};
-
