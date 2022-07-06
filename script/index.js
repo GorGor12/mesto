@@ -50,9 +50,9 @@ const initialCards = [
   }
 ];
 
-function blockButtonDefault () {
-createCardButton.setAttribute('disabled', 'disabled');
-createCardButton.classList.add('popup__save-button_inactive');
+function blockButtonDefault() {
+  createCardButton.setAttribute('disabled', 'disabled');
+  createCardButton.classList.add('popup__save-button_inactive');
 };
 
 initialCards.forEach(function (element) {
@@ -120,7 +120,6 @@ function openPopup(popupElement) {
   }
   document.addEventListener('keydown', handleEscape);
 
-
   function handleClickOutside(e) {
     if (e.target === e.currentTarget) {
       closePopup(popupElement);
@@ -132,7 +131,6 @@ function openPopup(popupElement) {
 
 function closePopup(popupElement) {
   popupElement.classList.remove('popup_open');
-  console.log('здесь');
   blockButtonDefault();
 }
 
