@@ -19,6 +19,7 @@ const section = document.querySelector('.elements'); //куда добавляе
 const itemTemplate = document.querySelector('.template').content; //что добавляем
 const itemTemplateCard = itemTemplate.querySelector('.elements__item').cloneNode(true);
 const newBasket = itemTemplateCard.querySelector('.elements__basket');
+const popup = document.querySelector('.popup');
 const popups = document.querySelectorAll('.popup');//создал массив из всех попапов
 const createCardButton = document.querySelector('.create-card-button');
 const popupOpened = document.querySelector('.popup_open');
@@ -49,9 +50,9 @@ const initialCards = [
   }
 ];
 
-function blockButtonDefault () {
-createCardButton.setAttribute('disabled', 'disabled');
-createCardButton.classList.add('popup__save-button_inactive');
+function blockButtonDefault() {
+  createCardButton.setAttribute('disabled', 'disabled');
+  createCardButton.classList.add('popup__save-button_inactive');
 };
 
 initialCards.forEach(function (element) {
@@ -77,7 +78,7 @@ function createCardElement(name, link) {
     buttonHeart.classList.toggle('elements__heart_active');
   });
   elementsImage.addEventListener('click', function () {
-    popupImage.classList.add('popup_open');
+    openPopup(popupImage);
     document.querySelector('.popup__image-image').src = link;
     document.querySelector('.popup__image-image').alt = name;
     document.querySelector('.popup__image-text').textContent = name;
@@ -103,29 +104,35 @@ function addPlace(evt) {
 }
 
 function openPopup(popupElement) {
+  const popupCloseButton = popupElement.querySelector('.popup__close-button');
   popupElement.classList.add('popup_open');
-  popupCloseButtonNewPlace.addEventListener('click', function () {
-    closePopup(popupNewPlace);
-  });
-  popupCloseButtonProfile.addEventListener('click', function () {
-    closePopup(popupProfile);
-  });
-  popupCloseButtonImage.addEventListener('click', function () {
-    closePopup(popupImage);
-  });
+
+  const handleClose = function () {
+    closePopup(popupElement);
+    popupCloseButton.removeEventListener('click', handleClose);
+  };
+  popupCloseButton.addEventListener('click', handleClose);
+
+  const handleOutsideClick = function (e) {
+    if (e.target === e.currentTarget) {
+      closePopup(popupElement);
+      popupElement.removeEventListener('click', handleOutsideClick);
+    };
+  };
+  popupElement.addEventListener('click', handleOutsideClick);
+
+  const handleEscape = function (e) {
+    if (e.code === 'Escape') {
+      closePopup(popupElement);
+      document.removeEventListener('keydown', handleEscape);
+    };
+  };
+  document.addEventListener('keydown', handleEscape);
 }
 
 function closePopup(popupElement) {
+  const popupCloseButton = popupElement.querySelector('.popup__close-button');
   popupElement.classList.remove('popup_open');
-  popupCloseButtonNewPlace.removeEventListener('click', function () {
-    closePopup(popupNewPlace);
-  });
-  popupCloseButtonProfile.removeEventListener('click', function () {
-    closePopup(popupProfile);
-  });
-  popupCloseButtonImage.removeEventListener('click', function () {
-    closePopup(popupImage);
-  });
   blockButtonDefault();
 }
 
@@ -153,35 +160,3 @@ profileEditButton.addEventListener('click', function () {
 formElementProfile.addEventListener('submit', formSubmitHandlerProfile);
 
 formElementNewPlace.addEventListener('submit', addPlace);
-
-//forEach: перебирает элементы массива и выполняет для каждого свой код
-popups.forEach((popup) => {
-  popup.addEventListener('click', function (e) {
-    if (e.target === e.currentTarget) {
-      // popup.classList.remove('popup_open');
-      closePopup(popupNewPlace);
-      closePopup(popupProfile);
-      closePopup(popupImage);
-    };
-  });
-  document.addEventListener('keydown', function (e) {
-    if (e.code === 'Escape') {
-      // popup.classList.remove('popup_open');
-      closePopup(popupNewPlace);
-      closePopup(popupProfile);
-      closePopup(popupImage);
-    };
-  });
-});
-
-document.addEventListener('keydown', function (e) {
-  if (e.code === 'Escape') {
-    closePopup(popupProfile);
-  }
-});
-
-document.addEventListener('keydown', function (e) {
-  if (e.code === 'Escape') {
-    closePopup(popupNewPlace);
-  }
-});

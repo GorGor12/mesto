@@ -4,7 +4,7 @@ const setEventListeners = (formElement, selectors) => {
   const buttonElement = formElement.querySelector(selectors.submitButtonSelector);
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', () => {
-      isValid(formElement, inputElement, selectors);
+      checkIsValid(formElement, inputElement, selectors);
       toggleButtonState(inputList, buttonElement, selectors);
     });
   });
@@ -13,23 +13,18 @@ const setEventListeners = (formElement, selectors) => {
 const enableValidation = (selectors) => {
   const formList = Array.from(document.querySelectorAll(selectors.formSelector));
   formList.forEach((formElement) => {
-    formElement.addEventListener('submit', (evt) => {
-      evt.preventDefault();
-    });
     setEventListeners(formElement, selectors);
   });
 };
 
 //"является действительным" ввод?
-const isValid = (formElement, inputElement, selectors) => { //добавили 2 параметра formElement, inputElement
+const checkIsValid = (formElement, inputElement, selectors) => { //добавили 2 параметра formElement, inputElement
   if (!inputElement.validity.valid) {
     showInputError(formElement, inputElement, inputElement.validationMessage, selectors);//обратились в св-ву валидейшнмеседж у конкретного инпута, для получения текста какой-то ошибки
   } else {
     hideInputError(formElement, inputElement, selectors);
   }
 };
-
-
 
 //переключение состояния кнопки
 const toggleButtonState = (inputList, buttonElement, selectors) => {
@@ -42,7 +37,6 @@ const toggleButtonState = (inputList, buttonElement, selectors) => {
   }
 };
 
-
 //показ ошибки в инпуте
 const showInputError = (formElement, inputElement, errorMessage, selectors) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);//находим в form - составной класс из id формы и слова error, получаем класс какой-то конкретной ошибки из крнкретного инпута
@@ -51,6 +45,7 @@ const showInputError = (formElement, inputElement, errorMessage, selectors) => {
   errorElement.classList.add(`${inputElement.id}-error_active`);
   errorElement.classList.add(selectors.errorClass);
 };
+
 //скрытие ошибки в инпуте
 const hideInputError = (formElement, inputElement, selectors) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
