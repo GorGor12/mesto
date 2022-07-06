@@ -50,9 +50,9 @@ const initialCards = [
   }
 ];
 
-function blockButtonDefault() {
-  createCardButton.setAttribute('disabled', 'disabled');
-  createCardButton.classList.add('popup__save-button_inactive');
+function blockButtonDefault () {
+createCardButton.setAttribute('disabled', 'disabled');
+createCardButton.classList.add('popup__save-button_inactive');
 };
 
 initialCards.forEach(function (element) {
@@ -104,35 +104,35 @@ function addPlace(evt) {
 }
 
 function openPopup(popupElement) {
-  const popupCloseButton = popupElement.querySelector('.popup__close-button');
   popupElement.classList.add('popup_open');
-
-  const handleClose = function () {
+  const popupCloseButton = popupElement.querySelector('.popup__close-button');
+  function handleClose() {
     closePopup(popupElement);
     popupCloseButton.removeEventListener('click', handleClose);
-  };
+  }
   popupCloseButton.addEventListener('click', handleClose);
 
-  const handleOutsideClick = function (e) {
-    if (e.target === e.currentTarget) {
-      closePopup(popupElement);
-      popupElement.removeEventListener('click', handleOutsideClick);
-    };
-  };
-  popupElement.addEventListener('click', handleOutsideClick);
-
-  const handleEscape = function (e) {
+  function handleEscape(e) {
     if (e.code === 'Escape') {
       closePopup(popupElement);
       document.removeEventListener('keydown', handleEscape);
-    };
-  };
+    }
+  }
   document.addEventListener('keydown', handleEscape);
+
+
+  function handleClickOutside(e) {
+    if (e.target === e.currentTarget) {
+      closePopup(popupElement);
+      popupElement.removeEventListener('click', handleClickOutside);
+    };
+  }
+  popupElement.addEventListener('click', handleClickOutside);
 }
 
 function closePopup(popupElement) {
-  const popupCloseButton = popupElement.querySelector('.popup__close-button');
   popupElement.classList.remove('popup_open');
+  console.log('здесь');
   blockButtonDefault();
 }
 
