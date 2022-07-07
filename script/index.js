@@ -1,9 +1,11 @@
 const profileEditButton = document.querySelector('.profile__edit-button');
 const popupProfile = document.querySelector('.popup_type_profile');
+const popupImage = document.querySelector('.popup_type_image');
+const popupNewPlace = document.querySelector('.popup_type_new-place');
+const popups = document.querySelectorAll('.popup');//создал массив из всех попапов
 const popupCloseButtonProfile = document.querySelector('.popup__close-button_type_profile');
 const popupCloseButtonNewPlace = document.querySelector('.popup__close-button_type_newplace');
 const popupCloseButtonImage = document.querySelector('.popup__close-button_image_close');
-const popupImage = document.querySelector('.popup_type_image');
 const formElementProfile = document.querySelector('.popup__form');
 const formElementNewPlace = document.querySelector('.popup__form-newplace');
 const nameInput = document.querySelector('.popup__input_value_name');
@@ -12,17 +14,13 @@ const profileName = document.querySelector('.profile__full-name');
 const job = document.querySelector('.profile__profession');
 const elementsTitle = document.querySelector('.elements__title');
 const addCardButton = document.querySelector('.profile__add-button');
-const popupNewPlace = document.querySelector('.popup_type_new-place');
 const placeInput = document.querySelector('.popup__input_value_place');
 const srcInput = document.querySelector('.popup__input_value_src');
 const section = document.querySelector('.elements'); //куда добавляем
 const itemTemplate = document.querySelector('.template').content; //что добавляем
 const itemTemplateCard = itemTemplate.querySelector('.elements__item').cloneNode(true);
 const newBasket = itemTemplateCard.querySelector('.elements__basket');
-const popup = document.querySelector('.popup');
-const popups = document.querySelectorAll('.popup');//создал массив из всех попапов
 const createCardButton = document.querySelector('.create-card-button');
-const popupOpened = document.querySelector('.popup_open');
 const initialCards = [
   {
     name: 'Архыз',
@@ -105,33 +103,19 @@ function addPlace(evt) {
 
 function openPopup(popupElement) {
   popupElement.classList.add('popup_open');
-  const popupCloseButton = popupElement.querySelector('.popup__close-button');
-  function handleClose() {
-    closePopup(popupElement);
-    popupCloseButton.removeEventListener('click', handleClose);
-  }
-  popupCloseButton.addEventListener('click', handleClose);
-
-  function handleEscape(e) {
-    if (e.code === 'Escape') {
-      closePopup(popupElement);
-      document.removeEventListener('keydown', handleEscape);
-    }
-  }
-  document.addEventListener('keydown', handleEscape);
-
-  function handleClickOutside(e) {
-    if (e.target === e.currentTarget) {
-      closePopup(popupElement);
-      popupElement.removeEventListener('click', handleClickOutside);
-    };
-  }
-  popupElement.addEventListener('click', handleClickOutside);
+  document.addEventListener('keydown', closePopupByKey);
 }
 
 function closePopup(popupElement) {
   popupElement.classList.remove('popup_open');
-  blockButtonDefault();
+  document.removeEventListener('keydown', closePopupByKey);
+}
+
+function closePopupByKey(e) {
+  if (e.code === 'Escape') {
+    const openedPopup = document.querySelector('.popup_open');
+    closePopup(openedPopup);
+  }
 }
 
 enableValidation({
@@ -144,6 +128,27 @@ enableValidation({
 });
 
 blockButtonDefault();
+
+//forEach: перебирает элементы массива и выполняет для каждого свой код
+popups.forEach((popup) => {
+  popup.addEventListener('click', function (e) {
+    if (e.target === e.currentTarget) {
+      closePopup(popup);
+    };
+  });
+});
+
+popupCloseButtonNewPlace.addEventListener('click', function () {
+  closePopup(popupNewPlace);
+});
+
+popupCloseButtonProfile.addEventListener('click', function () {
+  closePopup(popupProfile);
+});
+
+popupCloseButtonImage.addEventListener('click', function () {
+  closePopup(popupImage);
+});
 
 addCardButton.addEventListener('click', function () {
   openPopup(popupNewPlace);
