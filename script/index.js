@@ -99,7 +99,6 @@ function addPlace(evt) {
   closePopup(popupNewPlace);
   formElementNewPlace.reset();
   section.prepend(card);
-  blockButtonDefault();
 }
 
 function openPopup(popupElement) {
@@ -128,8 +127,6 @@ enableValidation({
   errorClass: 'popup__error_active'
 });
 
-blockButtonDefault();
-
 //forEach: перебирает элементы массива и выполняет для каждого свой код
 popups.forEach((popup) => {
   popup.addEventListener('click', function (e) {
@@ -153,6 +150,7 @@ popupCloseButtonImage.addEventListener('click', function () {
 
 addCardButton.addEventListener('click', function () {
   openPopup(popupNewPlace);
+  blockButtonDefault();
 });
 
 profileEditButton.addEventListener('click', function () {
