@@ -9,6 +9,7 @@ const setEventListeners = (formElement, selectors) => {
     });
   });
 };
+
 //включение валидации
 const enableValidation = (selectors) => {
   const formList = Array.from(document.querySelectorAll(selectors.formSelector));
