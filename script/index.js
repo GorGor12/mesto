@@ -99,6 +99,7 @@ function addPlace(evt) {
   closePopup(popupNewPlace);
   formElementNewPlace.reset();
   section.prepend(card);
+  blockButtonDefault();
 }
 
 function openPopup(popupElement) {
